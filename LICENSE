@@ -1,3 +1,9 @@
+plugin/osc52.vim is forked from https://chromium.googlesource.com/apps/libapps/.
+See https://chromium.googlesource.com/apps/libapps/+/master/LICENSE
+for its original LICENSE (BSD-3-Clause).
+
+The rest of this project is released under the following license:
+
 BSD 3-Clause License
 
 Copyright (c) 2020, Yuxuan 'fishy' Wang
