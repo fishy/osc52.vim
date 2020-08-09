@@ -93,7 +93,14 @@ endfunction
 " This function causes the terminal to flash as a side effect.  It would be
 " better if it didn't, but I can't figure out how.
 function! s:rawecho (str)
-  exec("silent! !echo " . shellescape(a:str))
+  if has('nvim')
+    " NeoVim uses terminal emulator, so "silent! !echo ..." does not work.
+    " Have to use lua instead.
+    let b:osc52_str = a:str
+    lua io.stdout:write(vim.api.nvim_buf_get_var(0, 'osc52_str'))
+  else
+    exec("silent! !echo " . shellescape(a:str))
+  endif
   redraw!
 endfunction
 
