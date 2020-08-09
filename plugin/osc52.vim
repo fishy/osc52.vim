@@ -94,14 +94,14 @@ endfunction
 " better if it didn't, but I can't figure out how.
 function! s:rawecho (str)
   if has('nvim')
-    " NeoVim uses terminal emulator, so "silent! !echo ..." does not work.
-    " Have to use lua instead.
+    " exec with echo doesn't work in NeoVim because NeoVim uses terminal
+    " emulator. Use lua to send to stdout directly instead.
     let b:osc52_str = a:str
     lua io.stdout:write(vim.api.nvim_buf_get_var(0, 'osc52_str'))
   else
     exec("silent! !echo " . shellescape(a:str))
+    redraw!
   endif
-  redraw!
 endfunction
 
 " Lookup table for s:b64encode.
